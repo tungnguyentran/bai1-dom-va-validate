@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Code gym online</title>
+    </head>
+    <body>
+        <form method="post" action="" id="form" >
+            <div id="errorMessages"></div>
+            <label>Username</label>
+            <input type="text" name="username" class="field" />
+            <br />
+            <label>Email</label>
+            <input type="email" name="email" class="field" />
+            <br />
+            <label>Age</label>
+            <input type="number" name="age" class="field" />
+            <br />
+            <label>Phone</label>
+            <input type="text" name="phone" class="field" />
+            <br />
+            <button type="submit">save</button>
+        </form>
+        <script>
+            const validationsFunction = {
+                required: (value) => {
+                    if (value) {
+                        return true
+                    }
+                    return false
+                },
+                checkRegex: (value, regex) => {
+                    return true
+                }
+            }
+
+            const form = document.getElementById('form')
+            form.addEventListener('submit', (e) => {
+                e.preventDefault()
+                const validations = {
+                    'username': ['required'],
+                    'email': ['required'],
+                    'age': ['required'],
+                    'phone': ['checkRegex'],
+                    'password': ['required', 'max', 'min']
+                }
+
+                const errorMessages = []
+
+                const fields = document.getElementsByClassName('field')
+                for (let i = 0; i < fields.length; i++) {
+                    console.log(fields[i].name)
+                    console.log(fields[i].value)
+                    for (let j = 0; j < validations[fields[i].name].length; j++) {
+                        console.log(validations[fields[i].name][j])
+                        errorMessages.push('111')
+                    }
+                }
+
+                const errorDom = document.getElementById('errorMessage')
+                errorDom.innerHTML('')
+            })
+
+            
+        </script>
+    </body>
+</html>
